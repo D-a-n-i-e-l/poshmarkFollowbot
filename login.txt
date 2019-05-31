@@ -1,0 +1,1 @@
+# Type your username and password separated by a space. Save and make sure this document stays in same directory as bot script.
