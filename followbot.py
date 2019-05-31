@@ -13,12 +13,12 @@ class PoshFollowBot:
 		userInfo = open('login.txt','r')
 		self.login = userInfo.read().split(' ')
 		
-# Initializes chrome via Selenium Webdriver. I included my local path, but please substitute your own.
+# Initializes chrome via Selenium Webdriver. Please enter your own path to chromedriver.exe.
 # Selenium targets input field web elements for login and sends the values from user_login function.
 # Finally, Selenium clicks the submit button via Xpath. I utlize ChroPath chrome plugin to find relateive Xpath.
 	def login_to_poshmark(self):	
 		url = "https://poshmark.com/login"
-		driver = webdriver.Chrome('/Users/daniel/Documents/code_python/chromedriver')
+		driver = webdriver.Chrome('/')
 		self.driver = driver
 		driver.get(url)
 		elem = driver.find_element_by_id('login_form_username_email')
