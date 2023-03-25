@@ -19,7 +19,7 @@ class PoshFollowBot:
 # Finally, Selenium clicks the submit button via Xpath. I utlize ChroPath chrome plugin to find relateive Xpath.
 	def login_to_poshmark(self):	
 		url = "https://poshmark.com/login"
-		driver = webdriver.Chrome('/Users/dinamuscanell/Applications/Google Chrome.app')
+		driver = webdriver.Chrome('/')
 		self.driver = driver
 		driver.get(url)
 		elem = driver.find_element(By.ID, 'login_form_username_email')
