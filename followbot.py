@@ -1,8 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 import time
 import random
-
 
 class PoshFollowBot:
 
@@ -21,11 +22,16 @@ class PoshFollowBot:
 		driver = webdriver.Chrome('/')
 		self.driver = driver
 		driver.get(url)
-		elem = driver.find_element_by_id('login_form_username_email')
+		elem = driver.find_element(By.ID, 'login_form_username_email')
 		elem.send_keys(self.login[0])
-		elem = driver.find_element_by_id('login_form_password')
+		elem = driver.find_element(By.ID, 'login_form_password')
 		elem.send_keys(self.login[1])
-		driver.find_element_by_xpath("//button[@class='btn blue btn-primary']").click()
+		time.sleep(5)
+		try:
+			l = driver.find_element(By.XPATH, '//button[@class="btn btn--primary blue btn-primary"]')
+			l.click()
+		except NoSuchElementException:
+			pass
 
 # This function has you enter your search terms via terminal. It creates a list and separates values by space for search.
 	def create_search_keywords(self):
@@ -44,9 +50,10 @@ class PoshFollowBot:
 			for i in range(3):
 				driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 				time.sleep(5)
-			driver.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+			driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.CONTROL + Keys.HOME)
 			time.sleep(5)
-			users_follow_button = driver.find_elements_by_id('follow-user')
+			#users_follow_button = driver.find_elements_by_id('follow-user')
+			users_follow_button = driver.find_elements(By.XPATH, "//button[@Class='al--right btn follow__btn follow__action__button btn--primary']")
 			user_count = len(users_follow_button)
 			print("There are " + str(user_count) + " users to follow!")
 
